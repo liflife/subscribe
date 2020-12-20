@@ -39,4 +39,4 @@ jobs:
           TZ: Asia/Shanghai
           # 时区配置为Asia/Shanghai
         run:
-          mvn compile exec:java -Dexec.mainClass="com.lxf.stock.StockMain" -Dexec.args="${DEDEUSERID} ${SESSDATA} ${BILI_JCT} ${SERVERPUSHKEY}"
+          mvn compile exec:java -Dexec.mainClass="com.lxf.stock.StockMain" -Dexec.args="${PUSHTOKEN}"
