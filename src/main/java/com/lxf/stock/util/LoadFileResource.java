@@ -1,7 +1,7 @@
 package com.lxf.stock.util;
 
 
-import com.lxf.stock.StockService;
+import com.lxf.stock.service.StockService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,13 +1,10 @@
 package com.lxf.stock.rule;
 
-import com.lxf.stock.SendServer;
 import com.lxf.stock.bean.Stock;
-import com.lxf.stock.bean.StockRule;
 import com.lxf.stock.bean.User;
 import org.jeasy.rules.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Rule(name = "StockEasyRule", description = "if it rains then take an umbrella")
 public class StockEasyRule {

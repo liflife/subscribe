@@ -12,5 +12,22 @@
           "stockCode":"002232"
         }
       ]
-    }
+    },
+  {
+    "userName": "lnx",
+    "stockRules": [
+      {
+        "stockCode":"000630"
+      },
+      {
+        "stockCode":"000848"
+      },
+      {
+        "stockCode":"600023"
+      },
+      {
+        "stockCode":"601985"
+      }
+    ]
+  }
 ]

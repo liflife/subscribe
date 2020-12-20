@@ -1,4 +1,4 @@
-package com.lxf.stock;
+package com.lxf.stock.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

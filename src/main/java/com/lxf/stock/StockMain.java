@@ -4,7 +4,10 @@ import com.lxf.stock.bean.Stock;
 import com.lxf.stock.bean.StockRule;
 import com.lxf.stock.bean.User;
 import com.lxf.stock.rule.PushMsgEasyRule;
-import com.lxf.stock.rule.StockEasyRule;
+import com.lxf.stock.service.MessagePushService;
+import com.lxf.stock.service.PlusAddSendServer;
+import com.lxf.stock.service.ServiceSendServer;
+import com.lxf.stock.service.StockService;
 import com.lxf.stock.util.Json2Bean;
 import com.lxf.stock.util.LoadFileResource;
 import org.jeasy.rules.api.Facts;
@@ -19,22 +22,22 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class StockMain {
-    private static Logger logger = LoggerFactory.getLogger(SendServer.class);
-   private static String pushToken="SCU137214Tbc71f20d0f354c996a40ea85df880dde5fdead997df28";
+    private static Logger logger = LoggerFactory.getLogger(ServiceSendServer.class);
+    public static String title = "股价触发了你设置的规则，赶紧看看吧！";;
 
     public static void main(String[] args) {
-
-        if (args.length < 1) {
+        if (args.length < 2) {
             logger.info("任务启动失败");
             logger.warn("pushToken参数缺失，请检查是否在Github Secrets中配置pushToken参数");
         }
-        pushToken = args[0];
+        String serviceToken = args[0];
+        String pushaddToken = args[1];
         StockService stockService = new StockService();
-        SendServer sendServer = new SendServer(pushToken);
+        MessagePushService messagePushService = new PlusAddSendServer(pushaddToken);
 
         // define rules
         Rules rules = new Rules();
-        rules.register(new PushMsgEasyRule(sendServer));
+        rules.register(new PushMsgEasyRule(messagePushService));
         // fire rules on known facts
         RulesEngine rulesEngine = new DefaultRulesEngine();
 

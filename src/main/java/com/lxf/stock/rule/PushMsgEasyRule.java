@@ -1,7 +1,8 @@
 package com.lxf.stock.rule;
 
-import com.alibaba.fastjson.JSON;
-import com.lxf.stock.SendServer;
+import com.lxf.stock.StockMain;
+import com.lxf.stock.service.MessagePushService;
+import com.lxf.stock.bean.SendMessage;
 import com.lxf.stock.bean.Stock;
 import com.lxf.stock.bean.StockRule;
 import com.lxf.stock.bean.User;
@@ -16,9 +17,9 @@ import java.util.stream.Collectors;
 
 @Rule(name = "PushMsgEasyRule", description = "if it rains then take an umbrella")
 public class PushMsgEasyRule {
-    private SendServer sendServer;
-    public PushMsgEasyRule(SendServer sendServer){
-        this.sendServer = sendServer;
+    private MessagePushService messagePushServic;
+    public PushMsgEasyRule(MessagePushService messagePushServic){
+        this.messagePushServic = messagePushServic;
     }
 
     @Condition
@@ -32,11 +33,9 @@ public class PushMsgEasyRule {
 
     @Action(order = 1)
     public void then(@Fact("ownStocks") List<Stock> ownStocks) {
-        String text = "股价触发了你设置的规则，赶紧看看吧！";
-        String desp = ownStocks.stream().map(stock -> {
-            return stock.toMKString();
-        }).collect(Collectors.joining("\n"));
-        desp ="## 股票列表 \n"+desp;
-        sendServer.pushMsg(text,desp);
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setTitle(StockMain.title);
+        sendMessage.setContent(ownStocks);
+        messagePushServic.pushMsg(sendMessage);
     }
 }
