@@ -1,0 +1,16 @@
+[
+    {
+      "userName": "lxf",
+      "stockRules": [
+        {
+          "stockCode":"600121"
+        },
+        {
+          "stockCode":"002230"
+        },
+        {
+          "stockCode":"002232"
+        }
+      ]
+    }
+]
