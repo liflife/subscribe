@@ -29,5 +29,19 @@
         "stockCode":"601985"
       }
     ]
+  },
+  {
+    "userName": "灵运",
+    "stockRules": [
+      {
+        "stockCode":"600121"
+      },
+      {
+        "stockCode":"002230"
+      },
+      {
+        "stockCode":"002232"
+      }
+    ]
   }
 ]
