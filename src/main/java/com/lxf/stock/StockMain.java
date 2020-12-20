@@ -11,15 +11,24 @@ import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rules;
 import org.jeasy.rules.api.RulesEngine;
 import org.jeasy.rules.core.DefaultRulesEngine;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class StockMain {
+    private static Logger logger = LoggerFactory.getLogger(SendServer.class);
    private static String pushToken="SCU137214Tbc71f20d0f354c996a40ea85df880dde5fdead997df28";
 
     public static void main(String[] args) {
+
+        if (args.length < 1) {
+            logger.info("任务启动失败");
+            logger.warn("pushToken参数缺失，请检查是否在Github Secrets中配置pushToken参数");
+        }
+        pushToken = args[0];
         StockService stockService = new StockService();
         SendServer sendServer = new SendServer(pushToken);
 
