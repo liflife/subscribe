@@ -11,11 +11,11 @@ import javax.net.ssl.SSLContext;
 import java.util.Arrays;
 
 
-public class ServiceSendServer implements MessagePushService{
-    private static Logger logger = LoggerFactory.getLogger(ServiceSendServer.class);
+public class ServiceSendService implements MessagePushService{
+    private static Logger logger = LoggerFactory.getLogger(ServiceSendService.class);
     private String pushToken;
 
-    public ServiceSendServer(String pushToken) {
+    public ServiceSendService(String pushToken) {
         this.pushToken = pushToken;
     }
 

@@ -8,11 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class PlusAddSendServer implements MessagePushService{
-    private static Logger logger = LoggerFactory.getLogger(PlusAddSendServer.class);
+public class PlusAddSendService implements MessagePushService{
+    private static Logger logger = LoggerFactory.getLogger(PlusAddSendService.class);
     private String token;
 
-    public PlusAddSendServer(String token) {
+    public PlusAddSendService(String token) {
         this.token = token;
     }
 

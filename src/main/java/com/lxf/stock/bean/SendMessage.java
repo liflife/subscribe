@@ -8,6 +8,7 @@ public class SendMessage {
     private List<Stock> content;
     private String template;
     private String topic;
+    private String uid;
 
     public String getToken() {
         return token;
@@ -47,5 +48,13 @@ public class SendMessage {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

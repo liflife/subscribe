@@ -74,7 +74,11 @@
             <artifactId>easy-rules-core</artifactId>
             <version>4.1.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.zjiecode</groupId>
+            <artifactId>wxpusher-java-sdk</artifactId>
+            <version>2.1.4</version>
+        </dependency>
     </dependencies>
 
     <build>

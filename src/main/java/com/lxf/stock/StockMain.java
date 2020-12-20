@@ -4,10 +4,7 @@ import com.lxf.stock.bean.Stock;
 import com.lxf.stock.bean.StockRule;
 import com.lxf.stock.bean.User;
 import com.lxf.stock.rule.PushMsgEasyRule;
-import com.lxf.stock.service.MessagePushService;
-import com.lxf.stock.service.PlusAddSendServer;
-import com.lxf.stock.service.ServiceSendServer;
-import com.lxf.stock.service.StockService;
+import com.lxf.stock.service.*;
 import com.lxf.stock.util.Json2Bean;
 import com.lxf.stock.util.LoadFileResource;
 import org.jeasy.rules.api.Facts;
@@ -22,18 +19,22 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class StockMain {
-    private static Logger logger = LoggerFactory.getLogger(ServiceSendServer.class);
+    private static Logger logger = LoggerFactory.getLogger(ServiceSendService.class);
     public static String title = "股价触发了你设置的规则，赶紧看看吧！";;
 
     public static void main(String[] args) {
-        if (args.length < 2) {
+        if (args.length < 3) {
             logger.info("任务启动失败");
             logger.warn("pushToken参数缺失，请检查是否在Github Secrets中配置pushToken参数");
+            return;
         }
         String serviceToken = args[0];
         String pushaddToken = args[1];
+        String wxpusherToken = args[2];
+//        String wxpusherToken = "";
         StockService stockService = new StockService();
-        MessagePushService messagePushService = new PlusAddSendServer(pushaddToken);
+        MessagePushService messagePushService = new WxpusherSendService(wxpusherToken);
+        UserService userService = new UserService(wxpusherToken);
 
         // define rules
         Rules rules = new Rules();
@@ -44,6 +45,7 @@ public class StockMain {
 
         String s = LoadFileResource.loadConfigJsonFromFile();
         List<User> users = Json2Bean.json2User(s);
+        userService.queryUserUid(users);
         List<String> stockCodes = users.stream().map(User::getStockRules).flatMap(List::stream).map(StockRule::getStockCode).collect(Collectors.toList());
         List<Stock> stocks = stockCodes.stream().map(stockCode -> {
             String atockStr = stockService.queryStock(stockCode);
