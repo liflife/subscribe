@@ -34,6 +34,9 @@ public class StockMain {
         String serviceToken = args[0];
         String pushaddToken = args[1];
         String wxpusherToken = args[2];
+        boolean isFlag =true;
+        DateTime now = DateTime.now(DateTimeZone.forTimeZone(TimeZone.getTimeZone("Asia/Shanghai")));
+        System.out.println(now.toString("时间当前东八区时间:")+now.toString("yyyy-MM-dd HH:mm:ss"))
         
 
 //        String wxpusherToken = "";
