@@ -13,7 +13,10 @@ import org.jeasy.rules.api.RulesEngine;
 import org.jeasy.rules.core.DefaultRulesEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
+import java.util.TimeZone;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -45,7 +48,7 @@ public class StockMain {
             System.out.println(now.toString("时间不符合，不调用：")+now.toString("yyyy-MM-dd HH:mm:ss"));
             return;
         }
-        
+        System.out.println(now.toString("时间当前东八区时间:")+now.toString("yyyy-MM-dd HH:mm:ss"))
 //        String wxpusherToken = "";
         StockService stockService = new StockService();
         MessagePushService messagePushService = new WxpusherSendService(wxpusherToken);
