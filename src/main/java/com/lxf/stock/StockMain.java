@@ -36,7 +36,7 @@ public class StockMain {
         String wxpusherToken = args[2];
         boolean isFlag =true;
         DateTime now = DateTime.now(DateTimeZone.forTimeZone("8"));
-        System.out.println(now.toString("时间当前东八区时间:")+now.toString("yyyy-MM-dd HH:mm:ss"))
+        System.out.println(now.toString("时间当前东八区时间:")+now.toString("yyyy-MM-dd HH:mm:ss"));
         int dayOfWeek = now.getDayOfWeek();
         int hourOfDay = now.getHourOfDay();
         if(1 <= dayOfWeek && dayOfWeek<=5){
