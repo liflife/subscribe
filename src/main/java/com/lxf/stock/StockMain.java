@@ -22,7 +22,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class StockMain {
-    private static Logger logger = LoggerFactory.getLogger(ServiceSendService.class);
+    private static Logger logger = LoggerFactory.getLogger(StockMain.class);
     public static String title = "股价触发了你设置的规则，赶紧看看吧！";;
 
     public static void main(String[] args) {
@@ -37,6 +37,7 @@ public class StockMain {
         
         boolean isFlag =true;
         DateTime now = DateTime.now(DateTimeZone.forTimeZone(TimeZone.getTimeZone("Asia/Shanghai")));
+        System.out.println(now.toString("时间当前东八区时间:")+now.toString("yyyy-MM-dd HH:mm:ss"))
         int dayOfWeek = now.getDayOfWeek();
         int hourOfDay = now.getHourOfDay();
         if(1 <= dayOfWeek && dayOfWeek<=5){
@@ -47,8 +48,7 @@ public class StockMain {
         if(isFlag){
             System.out.println(now.toString("时间不符合，不调用：")+now.toString("yyyy-MM-dd HH:mm:ss"));
             return;
-        }
-        System.out.println(now.toString("时间当前东八区时间:")+now.toString("yyyy-MM-dd HH:mm:ss"))
+        } 
 //        String wxpusherToken = "";
         StockService stockService = new StockService();
         MessagePushService messagePushService = new WxpusherSendService(wxpusherToken);
