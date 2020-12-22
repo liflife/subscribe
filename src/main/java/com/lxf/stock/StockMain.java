@@ -31,6 +31,21 @@ public class StockMain {
         String serviceToken = args[0];
         String pushaddToken = args[1];
         String wxpusherToken = args[2];
+        
+        boolean isFlag =true;
+        DateTime now = DateTime.now(DateTimeZone.forTimeZone(TimeZone.getTimeZone("Asia/Shanghai")));
+        int dayOfWeek = now.getDayOfWeek();
+        int hourOfDay = now.getHourOfDay();
+        if(1 <= dayOfWeek && dayOfWeek<=5){
+            if(9 <=hourOfDay && hourOfDay <=15){
+                isFlag=false;
+            }
+        }
+        if(isFlag){
+            System.out.println(now.toString("时间不符合，不调用：")+now.toString("yyyy-MM-dd HH:mm:ss"));
+            return;
+        }
+        
 //        String wxpusherToken = "";
         StockService stockService = new StockService();
         MessagePushService messagePushService = new WxpusherSendService(wxpusherToken);
