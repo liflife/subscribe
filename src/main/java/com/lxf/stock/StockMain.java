@@ -40,7 +40,11 @@ public class StockMain {
         String openAiKeys = args[3];
         sendOpenAi(serviceToken,pushaddToken,wxpusherToken,openAiKeys);
     }
-
+    public static void sendOpenAiNew(String serviceToken,String pushaddToken,String wxpusherToken,String openAiKeys){
+        OpenAiClient openAiClient = new OpenAiClient(openAiKeys);
+        ChatGptService chatGptService = new ChatGptService(openAiClient);
+        chatGptService.runChatGptJob();
+    }
     public static void sendOpenAi(String serviceToken,String pushaddToken,String wxpusherToken,String openAiKeys){
         MessagePushService messagePushService = new WxpusherSendService(wxpusherToken);
 
