@@ -2,10 +2,10 @@ package com.lxf.stock.bean;
 
 import java.util.List;
 
-public class SendMessage {
+public class SendMessage<T> {
     private String token;
     private String title;
-    private List<Stock> content;
+    private List<T> content;
     private String template;
     private String topic;
     private String uid;
@@ -26,11 +26,11 @@ public class SendMessage {
         this.title = title;
     }
 
-    public List<Stock> getContent() {
+    public List<T> getContent() {
         return content;
     }
 
-    public void setContent(List<Stock> content) {
+    public void setContent(List<T> content) {
         this.content = content;
     }
 

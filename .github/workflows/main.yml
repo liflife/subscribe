@@ -37,8 +37,8 @@ jobs:
           PUSHADDTOKEN: ${{ secrets.PUSHADDTOKEN }}
           SERVICETOKEN: ${{ secrets.SERVICETOKEN }}
           WXPUSHERTOKEN: ${{ secrets.WXPUSHERTOKEN }}
-          openAiKeys: ${{ secrets.openAiKeys }}
+          OPENAIKEYS: ${{ secrets.OPENAIKEYS }}
           TZ: Asia/Shanghai
           # 时区配置为Asia/Shanghai
         run:
-          mvn compile exec:java -Dexec.mainClass="com.lxf.stock.StockMain" -Dexec.args="${SERVICETOKEN} ${PUSHADDTOKEN} ${WXPUSHERTOKEN}"
+          mvn compile exec:java -Dexec.mainClass="com.lxf.stock.StockMain" -Dexec.args="${SERVICETOKEN} ${PUSHADDTOKEN} ${WXPUSHERTOKEN} ${OPENAIKEYS}"

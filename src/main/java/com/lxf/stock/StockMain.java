@@ -47,7 +47,6 @@ public class StockMain {
         UserService userService = new UserService(wxpusherToken);
         String s = LoadFileResource.loadConfigJsonFromFile();
         List<User> users = Json2Bean.json2User(s);
-
         OpenAiClient openAiClient = new OpenAiClient(openAiKeys);
         ChatGptService chatGptService = new ChatGptService(openAiClient);
         List<String> list = chatGptService.queryChatGpt("三体人是什么？");

@@ -17,23 +17,6 @@
       ]
     },
   {
-    "userName": "万紫千红",
-    "stockRules": [
-      {
-        "stockCode":"000630"
-      },
-      {
-        "stockCode":"000848"
-      },
-      {
-        "stockCode":"600023"
-      },
-      {
-        "stockCode":"601985"
-      }
-    ]
-  },
-  {
     "userName": "灵运",
     "stockRules": [
       {
