@@ -37,6 +37,7 @@ jobs:
           PUSHADDTOKEN: ${{ secrets.PUSHADDTOKEN }}
           SERVICETOKEN: ${{ secrets.SERVICETOKEN }}
           WXPUSHERTOKEN: ${{ secrets.WXPUSHERTOKEN }}
+          openAiKeys: ${{ secrets.openAiKeys }}
           TZ: Asia/Shanghai
           # 时区配置为Asia/Shanghai
         run:
