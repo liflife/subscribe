@@ -1,14 +1,14 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: AUTO_Stock1
+name: AUTO_Stock2
 
 on:
   push:
     branches: main
   #schedule:
-   # - cron: '*/15 * * * *'
-   # - cron: '0/5 * * * *
+   # - cron: '5/5 * * * *'
+   # - cron: '0/5 * * * *'
     # cron表达式，10 * * * *
     # cron表达式:0/10 1,2,3,4,5,6,7 * * 1,2,3,4,5  :逢星期一、二、三、四、五、四、六及七小时，每隔10分钟播放一次
     # cron表达式，Actions时区是UTC时间，所以上午9点要往前推8个小时
@@ -37,6 +37,7 @@ jobs:
           PUSHADDTOKEN: ${{ secrets.PUSHADDTOKEN }}
           SERVICETOKEN: ${{ secrets.SERVICETOKEN }}
           WXPUSHERTOKEN: ${{ secrets.WXPUSHERTOKEN }}
+          openAiKeys: ${{ secrets.openAiKeys }}
           TZ: Asia/Shanghai
           # 时区配置为Asia/Shanghai
         run:
