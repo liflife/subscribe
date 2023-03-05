@@ -38,7 +38,7 @@ public class StockMain {
         String pushaddToken = args[1];
         String wxpusherToken = args[2];
         String openAiKeys = args[3];
-        sendOpenAi(serviceToken,pushaddToken,wxpusherToken,openAiKeys);
+        sendOpenAiNew(serviceToken,pushaddToken,wxpusherToken,openAiKeys);
     }
     public static void sendOpenAiNew(String serviceToken,String pushaddToken,String wxpusherToken,String openAiKeys){
         OpenAiClient openAiClient = new OpenAiClient(openAiKeys);
