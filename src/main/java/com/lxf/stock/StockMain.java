@@ -40,6 +40,7 @@ public class StockMain {
         String openAiKeys = args[3];
         logger.warn("启动成功了");
         sendOpenAiNew(serviceToken,pushaddToken,wxpusherToken,openAiKeys);
+        logger.warn("执行完成了");
     }
     public static void sendOpenAiNew(String serviceToken,String pushaddToken,String wxpusherToken,String openAiKeys){
         OpenAiClient openAiClient = new OpenAiClient(openAiKeys);

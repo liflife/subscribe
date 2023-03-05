@@ -37,6 +37,7 @@ public class ChatGptService {
     public void runChatGptJob() {
         try {
             List<ChatGpt> chatGpts = subscribeService.queryChatGptData();
+            logger.info("查询到{}数据了",chatGpts.size());
             if(CollectionUtil.isNotEmpty(chatGpts)){
                 for (ChatGpt chatGpt : chatGpts) {
                     String prompt = chatGpt.getPrompt();

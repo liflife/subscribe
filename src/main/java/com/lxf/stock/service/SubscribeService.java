@@ -21,7 +21,7 @@ public class SubscribeService {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder()
-                .url(url+"/chatGpt/queryChatGptByStatus?uid=1&status=2")
+                .url(url+"/chatGpt/queryChatGptByStatus?uid=1&status=1")
                 .method("POST", body)
                 .addHeader("Content-Type", "application/json")
                 .build();
@@ -58,5 +58,10 @@ public class SubscribeService {
             return string;
         }
         return response.body().string();
+    }
+
+    public static void main(String[] args) throws IOException {
+        List<ChatGpt> chatGpts = new SubscribeService().queryChatGptData();
+        System.out.println(chatGpts);
     }
 }
