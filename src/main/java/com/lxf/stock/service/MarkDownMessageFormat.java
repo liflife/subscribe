@@ -38,4 +38,15 @@ public class MarkDownMessageFormat implements MessageFormat {
         System.out.println(text);
         return text;
     }
+
+    @Override
+    public String formatText(List<String> datas) {
+        String text ="## ChatGpt <br/>\n";
+        for (String str : datas) {
+            text+=">  "+str+"<br/>\n";
+            text+="\n";
+        }
+        System.out.println(text);
+        return text;
+    }
 }

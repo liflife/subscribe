@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface MessageFormat {
     String format(List<Stock> stocks);
+    String formatText(List<String> datas);
 }

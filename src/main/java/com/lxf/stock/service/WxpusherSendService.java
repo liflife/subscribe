@@ -28,7 +28,7 @@ public class WxpusherSendService  implements MessagePushService  {
         Message message = new Message();
         message.setAppToken(token);
         message.setContentType(Message.CONTENT_TYPE_MD);
-        message.setContent(new MarkDownMessageFormat().format(sendMessage.getContent()));
+        message.setContent(new MarkDownMessageFormat().formatText(sendMessage.getContent()));
         message.setUid(sendMessage.getUid());
         message.setUrl(Apis.PushUrl.wxpuserPush);
         Result<List<MessageResult>> result = WxPusher.send(message);

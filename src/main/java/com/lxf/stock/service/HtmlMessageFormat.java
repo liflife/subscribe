@@ -48,4 +48,9 @@ public class HtmlMessageFormat implements MessageFormat {
         return text;
     }
 
+    @Override
+    public String formatText(List<String> datas) {
+        return null;
+    }
+
 }
