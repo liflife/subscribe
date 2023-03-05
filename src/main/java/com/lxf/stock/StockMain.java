@@ -1,5 +1,6 @@
 package com.lxf.stock;
 
+import com.lxf.stock.bean.SendMessage;
 import com.lxf.stock.bean.Stock;
 import com.lxf.stock.bean.StockRule;
 import com.lxf.stock.bean.User;
@@ -7,6 +8,7 @@ import com.lxf.stock.rule.PushMsgEasyRule;
 import com.lxf.stock.service.*;
 import com.lxf.stock.util.Json2Bean;
 import com.lxf.stock.util.LoadFileResource;
+import com.unfbx.chatgpt.OpenAiClient;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rules;
 import org.jeasy.rules.api.RulesEngine;
@@ -23,7 +25,8 @@ import java.util.stream.Collectors;
 
 public class StockMain {
     private static Logger logger = LoggerFactory.getLogger(StockMain.class);
-    public static String title = "股价触发了你设置的规则，赶紧看看吧！";;
+    public static String title = "股价触发了你设置的规则，赶紧看看吧！";
+    public static String titleChatGpt = "ChatGpt";
 
     public static void main(String[] args) {
         if (args.length < 3) {
@@ -34,6 +37,32 @@ public class StockMain {
         String serviceToken = args[0];
         String pushaddToken = args[1];
         String wxpusherToken = args[2];
+        String openAiKeys = args[4];
+        sendOpenAi(serviceToken,pushaddToken,wxpusherToken,openAiKeys);
+    }
+
+    public static void sendOpenAi(String serviceToken,String pushaddToken,String wxpusherToken,String openAiKeys){
+        MessagePushService messagePushService = new WxpusherSendService(wxpusherToken);
+
+        UserService userService = new UserService(wxpusherToken);
+        String s = LoadFileResource.loadConfigJsonFromFile();
+        List<User> users = Json2Bean.json2User(s);
+
+        OpenAiClient openAiClient = new OpenAiClient(openAiKeys);
+        ChatGptService chatGptService = new ChatGptService(openAiClient);
+        List<String> list = chatGptService.queryChatGpt("三体人是什么？");
+        for (User user : users) {
+            // define rules
+            String uid = user.getUid();
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setTitle(StockMain.titleChatGpt);
+            sendMessage.setContent(list);
+            sendMessage.setUid(uid);
+            messagePushService.pushMsg(sendMessage);
+        }
+    }
+
+    public static void sendStock(String serviceToken,String pushaddToken,String wxpusherToken){
         boolean isFlag =true;
         DateTime now = DateTime.now(DateTimeZone.forTimeZone(TimeZone.getTimeZone("Asia/Shanghai")));
         int dayOfWeek = now.getDayOfWeek();
@@ -58,7 +87,6 @@ public class StockMain {
         rules.register(new PushMsgEasyRule(messagePushService));
         // fire rules on known facts
         RulesEngine rulesEngine = new DefaultRulesEngine();
-
 
         String s = LoadFileResource.loadConfigJsonFromFile();
         List<User> users = Json2Bean.json2User(s);
